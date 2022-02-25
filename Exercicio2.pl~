@@ -20,7 +20,3 @@ mae(Y,Filho):-progenitor(Y,Filho),feminino(Y).
 
 filho(Y,X):-progenitor(X,Y),masculino(Y).
 filha(Y,X):-progenitor(X,Y),feminino(Y).
-
-avÔ(X,Z):-progenitor(X,Y),progenitor(Y,Z),masculino(X).
-avó(X,Z):-progenitor(X,Y),progenitor(Y,Z),feminino(X).
-
