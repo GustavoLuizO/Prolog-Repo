@@ -12,5 +12,7 @@ progenitor(luciane,gustavo).
 progenitor(luciane,lilian).
 
 
-bisavo(X,Y):-progenitor(X,Z),progenitor(Z,A),progenitor(A,Y).
+bisavo(X,Y):-progenitor(X,Y),progenitor(X,Y),progenitor(X,Y).
+vo(X,Y):-progenitor(X,Y),progenitor(X,Y).
+pai(X,Y):-progenitor(X,Y).
 
