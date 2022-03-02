@@ -1,3 +1,17 @@
+feminino(maejoa).
+feminino(joana).
+feminino(maevo).
+feminino(maedamae).
+feminino(luciene).
+feminino(lilian).
+
+masculino(paiana).
+masculino(ananias).
+masculino(luiz).
+masculino(paivo).
+masculino(joao).
+masculino(gustavo).
+
 progenitor(paiana,ananias).
 progenitor(maejoa,joana).
 progenitor(paivo,luiz).
@@ -11,6 +25,5 @@ progenitor(joao,lilian).
 progenitor(luciane,gustavo).
 progenitor(luciane,lilian).
 
-
-bisavo(X,Y):-progenitor(X,Z),progenitor(Z,A),progenitor(A,Y).
-
+bisavô(X,Z):-progenitor(X,Y),progenitor(Y,W),progenitor(W,Z),masculino(X).
+bisavó(X,Z):-progenitor(X,Y),progenitor(Y,W),progenitor(W,Z),feminino(X).
