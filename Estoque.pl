@@ -23,12 +23,33 @@ ande(LD):- retract(posicao(vendedor,LO)),
            asserta(posicao(vendedor,LD)),
            format('Anda de ~w até a ~w',[LO,LD]),nl.
 
-pegarprod(Produto,QuantA,QuantRe):-
+estocaprod(Produto,Quant):-
+                 retract(produto(Produto,QuantA)),
+                 X is QuantA + Quant,
+                 assertz(produto(Produto,X)),
+                 format('Vendendor estoca ~w itens de ~w',[Quant,Produto]),nl.
+
+pegarprod(Produto,QuantRe):-
                  retract(pegar(_,_)),
                  assertz(pegar(Produto,QuantRe)),
-                 retract(produto(_,_)),
-                 X is QuantA-QuantRe,
-                 assertz(produto(Produto,X)).
+                 retract(produto(Produto,Quant)),
+                 X is Quant - QuantRe,
+                 assertz(produto(Produto,X)),
+                 format('Vendedor pega ~w itens de ~w',[QuantRe,Produto]),nl.
+vende:-
+    retract(pegar(Produto,Quant)),
+    assertz(pegar(nada,0)),
+    format('Vendeu ~w objetos de ~w',[Quant,Produto]).
+
+carrega:- consult('estoqu.bd').
+
+salva:-tell('estoque.bd'),
+       listing(posicao),
+       listing(pegar),
+       listing(vender),
+       listing(produto),
+       told.
+
 
 
 
