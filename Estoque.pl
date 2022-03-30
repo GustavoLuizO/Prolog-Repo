@@ -1,7 +1,7 @@
 :-dynamic posicao/2.
 :-dynamic pegar/2.
 :-dynamic vender/1.
-:-dynamic produto/1.
+:-dynamic produto/2.
 posicao(vendedor,balcao).
 posicao(camisaamarela,pratcamisas).
 posicao(camisarosa,pratcamisas).
@@ -23,10 +23,12 @@ ande(LD):- retract(posicao(vendedor,LO)),
            asserta(posicao(vendedor,LD)),
            format('Anda de ~w até a ~w',[LO,LD]),nl.
 
-pegarprod(Produto,Quant):-
+pegarprod(Produto,QuantA,QuantRe):-
                  retract(pegar(_,_)),
-                 assertz(pegar(Produto,Quant)),
-                 format('Pegou ~w',[Produto]),nl.
+                 assertz(pegar(Produto,QuantRe)),
+                 retract(produto(_,_)),
+                 X is QuantA-QuantRe,
+                 assertz(produto(Produto,X)).
 
 
 
